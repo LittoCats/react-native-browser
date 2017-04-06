@@ -1,0 +1,25 @@
+{
+  "name": "react-native-browser",
+  "version": "0.0.1",
+  "description": "Virtual browser to load react-native component on server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LittoCats/react-native-browser.git"
+  },
+  "keywords": [
+    "react-native",
+    "browser",
+    "hotload",
+    "codepush"
+  ],
+  "author": "程巍巍",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/LittoCats/react-native-browser/issues"
+  },
+  "homepage": "https://github.com/LittoCats/react-native-browser#readme"
+}
