@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+var http = require('http');
+var url = require('url');
+var path = require('path');
+var babel = require('babel-core');
+var program = require('commander');
+
+program
+.version('0.0.1')
+.option('-p, --port [value]', '设置服务器端口', 7461)
+.option('-a, --admin [value]', '设置工作目录', 'admin')
+
+program.parse(process.argv);
+
+var PORT = program.port;
+var ROOT = path.resolve(program.admin);
+
+http.createServer(function (request, response) {
+  var pathname = url.parse(request.url).pathname;
+  var realPath = path.join(ROOT, pathname);
+
+  console.log(realPath);
+  babel.transformFile(realPath, {}, function (err, result) {
+    if (err) {
+      response.writeHead(500, {
+        'Content-Type': 'text/plain'
+      });
+      response.end(err.message);
+    }else{
+      response.writeHead(200, {
+        'Content-Type': 'text/javascript'
+      });
+      response.write(result.code);
+      response.end();
+    }
+  });
+}).listen(PORT);
+
+console.log('Server runing at port: ' + PORT + ' .');
+
+
+
+
